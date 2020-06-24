@@ -23,7 +23,7 @@ public class NoteRepository {
     }
 
     public void update (Note note){
-        new UpdateNoteAsynTask(noteDao).execute(note);
+        new UpdateNoteAsyncTask(noteDao).execute(note);
 
     }
 
@@ -55,13 +55,11 @@ public class NoteRepository {
         }
     }
 
-    private static class UpdateNoteAsynTask extends AsyncTask<Note,Void,Void>{
+    private static class UpdateNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private NoteDao noteDao;
-
-        private UpdateNoteAsynTask(NoteDao noteDao){
+        private UpdateNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
         }
-
         @Override
         protected Void doInBackground(Note... notes) {
             noteDao.update(notes[0]);
